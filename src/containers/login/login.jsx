@@ -118,6 +118,7 @@ class Login extends Component {
 
 export default connect(
     // connect return dispatch() 将action 交给store  
+    // 满足dispatch(type,data)
     state => ({
         isLogin: state.loginData.isLogin
     }),{
