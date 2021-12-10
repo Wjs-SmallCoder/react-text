@@ -22,16 +22,17 @@ class Login extends Component {
 
         //  表单通过验证调用
           const onFinish = (values) => {
+            // 发送网络请求
               const {username,password} = values
             //   console.log(username,password)
-            reqLogin(username,password)
+            reqLogin(username,password) // 返回promise
             .then((result) => {
                 const {status,msg,data} = result
                 // console.log(result)
                 if (status === 0) {
                     // console.log(data)
                     this.props.saveUser(data)
-                    this.props.history.replace('/admin')
+                    this.props.history.replace('/admin') // 替换地址栏(跳转)
                     // console.log(this.props.history)
                 } else {
                     message.warning(msg,1)
@@ -116,9 +117,10 @@ class Login extends Component {
 }
 
 export default connect(
+    // connect return dispatch() 将action 交给store  
     state => ({
         isLogin: state.loginData.isLogin
     }),{
-        saveUser: createSaveUser,
+        saveUser: createSaveUser // 存放的是props
     }
 )(Login)

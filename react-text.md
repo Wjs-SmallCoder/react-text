@@ -1,7 +1,17 @@
-1. antd UI库(v4)
-    
-    import { Form, Input, Button } from 'antd'; 需要什么 DOM 在这里声明，在下面用组件的形式使用 如 <Form></Form> 
+src --- 
+  api --- 存放请求接口
+  config --- 设置服务器域名
+  containers --- 容器组件(可以将UI组件和容器组件写在同一个文件下)(使用了connect 的组件称为容器组件)
+  redux --- 
+     actions ---
+     reducers ---
+     action_type.js
+     store.js
+  App.js --- 
+  index.js --- 入口文件
 
-    import { UserOutlined, LockOutlined } from '@ant-design/icons'; 引用icon 图标，类似属性   如 <Input prefix={<UserOutlined className="site-form-item-icon" />}/>
+使用redux react-redux react-router-dom redux-thunk axios antd
 
-    其他详情看login.jsx  https://ant.design/docs/react/use-with-create-react-app-cn
+reducer 定义state 和操作state
+action 定义方法
+
