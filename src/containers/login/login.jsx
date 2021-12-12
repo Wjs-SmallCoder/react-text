@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {createSaveUser} from '../../redux/actions/login-action-creator'
 import './css/login.less'
-import logo from './images/logo.png'
+import logo from '../../static/img/logo.png'
 
 import { Form, Input, Button, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -117,8 +117,8 @@ class Login extends Component {
 }
 
 export default connect(
-    // connect return dispatch() 将action 交给store  
-    // 满足dispatch(type,data)
+    // connect return dispatch() 将action 返回 
+    // 满足dispathc(type,data)
     state => ({
         isLogin: state.loginData.isLogin
     }),{

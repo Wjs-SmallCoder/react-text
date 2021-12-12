@@ -15,3 +15,15 @@ src ---
 reducer 定义state 和操作state
 action 定义方法
 
+// 数据库引入 需放入admin_db
+
+yarn add @babel/plugin-proposal-decorators (es6 转化器语法解义) 
+
+全屏插件
+  npm i screenfull@5.2.0 (6.0 不支持node)
+
+时间戳插件
+  npm i dayjs
+
+jsonp(不使用axios )
+  npm i jsonp
