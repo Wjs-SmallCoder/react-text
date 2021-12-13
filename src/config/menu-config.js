@@ -10,16 +10,16 @@ const menuList = [
     isPublic: true, // 不需要进行权限检查
   },
   {
-    title: '商品分类',
+    title: '商品',
     key: 'prod_about',
     children: [ // 子菜单列表
       {
-        title: '商品',
+        title: '分类管理',
         key: 'category',
         path: '/admin/prod_about/category',
       },
       {
-        title: '产品',
+        title: '商品管理',
         key: 'product',
         path: '/admin/prod_about/product'
       },

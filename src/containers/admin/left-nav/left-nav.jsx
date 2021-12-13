@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import {Link,withRouter} from 'react-router-dom'
 import {Menu} from 'antd'
+import {connect} from "react-redux"
+import { createSaveTitle } from '../../../redux/actions/save-action-creator'
 
 import './left-nav.less'
 import menulist from '../../../config/menu-config'
@@ -13,7 +15,7 @@ class Left extends Component {
         return target.map((item) => {
             if (!item.children) {
                 return (
-                    <Menu.Item key={item.key}>
+                    <Menu.Item key={item.key} onClick={() => {this.props.saveTitle(item.title)}}>
                         <Link to={item.path}>
                             {item.icon}
                             {item.title}
@@ -71,4 +73,11 @@ class Left extends Component {
     }
 }
 
-export default withRouter(Left) // 这里使用withRouter 是因为实现点击刷新后的位置与刷新前一样，需要获取路由路径，需要将该组件添加到路由去(通过this.props.location 获取)
+
+export default connect(
+    state => ({
+
+    }),{
+        saveTitle : createSaveTitle
+    }
+)(withRouter(Left)) // 这里使用withRouter 是因为实现点击刷新后的位置与刷新前一样，需要获取路由路径，需要将该组件添加到路由去(通过this.props.location 获取))

@@ -8,21 +8,13 @@ import './css/header.less'
 import { Modal,Button } from 'antd';
 import {FullscreenOutlined,FullscreenExitOutlined,ExclamationCircleOutlined} from '@ant-design/icons'
 import { reqWeather } from '../../../api'
+import menuList from '../../../config/menu-config'
 
 class Header extends Component {
     state = {
         isFull: false,
         date: dayjs().format('YYYY年 MM月 DD日 HH:mm:ss'),
-    }
-
-
-    fullscreen = () => {
-        screenfull.toggle()
-    }
-
-    getWeather = async() => {
-        let result = await reqWeather()
-        console.log(result)
+        title: ''
     }
 
     componentDidMount() {
@@ -34,11 +26,39 @@ class Header extends Component {
             this.setState({date: dayjs().format('YYYY年 MM月 DD日 HH:mm:ss')})
         },1000)
         this.getWeather()
+        this.getTitle()
     }
 
     componentWillUnmount() {
         clearInterval(this.timer)
     }   
+
+    fullscreen = () => {
+        screenfull.toggle()
+    }
+
+    getWeather = async() => {
+        let result = await reqWeather()
+        console.log(result)
+    }
+
+    getTitle = () => {
+        let pathkey = this.props.location.pathname.split('/').reverse()[0]
+        let title = ''
+        menuList.forEach((item) => {
+            if (item.children instanceof Array) {
+                let tmp = item.children.find((citem) => {
+                    return citem.key === pathkey
+                })
+                if (tmp) {title = tmp.title}
+            } else {
+                if (pathkey === item.key) {
+                    title = item.title
+                } 
+            }
+        })
+        this.setState({title: title})
+    }
 
     loginOut = () => {
         const { confirm } = Modal
@@ -71,8 +91,8 @@ class Header extends Component {
                 </div>
                 <div className="header-bottom">
                     <div className="header-bottom-left">
-                        {
-                            this.props.location.pathname // 获取路径需要使用withRouter 来使用路由的api
+                        { // state 是redux 管理，页面刷新数据初始化，props 获取不到，通过state 获取url 的路径
+                            this.props.title || this.state.title // 获取路径需要使用withRouter 来使用路由的api
                         } 
                     </div>
                     <div className="header-bottom-right">
@@ -88,7 +108,9 @@ class Header extends Component {
 
 export default connect(
     state => ({
-        loginData: state.loginData
+        // 这里是从state 拿到数据，但是是使用this.props 获取
+        loginData: state.loginData,
+        title: state.title
     }),{
         deleteUser: createDeleteUser
     }

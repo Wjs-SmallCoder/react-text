@@ -2,7 +2,7 @@ import {SAVEUSER,DELETEUSER} from '../action_types'
 
 let user = JSON.parse(localStorage.getItem('user')) // 拿到本地保存的user 转为obj
 let token = localStorage.getItem('token') // 拿到本地保存的user 转为obj
-let initState = {
+let initState = { // 初始化
     user: user || '',
     token: token || '',
     isLogin: user && token ? true : false
