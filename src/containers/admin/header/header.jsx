@@ -43,8 +43,10 @@ class Header extends Component {
     }
 
     getTitle = () => {
-        let pathkey = this.props.location.pathname.split('/').reverse()[0]
+        let {pathname} = this.props.location
+        let pathkey = pathname.split('/').reverse()[0]
         let title = ''
+        if(pathname.indexOf('product') !== -1) pathkey='product' // 解决product 子菜单点击后导致页面少了title
         menuList.forEach((item) => {
             if (item.children instanceof Array) {
                 let tmp = item.children.find((citem) => {

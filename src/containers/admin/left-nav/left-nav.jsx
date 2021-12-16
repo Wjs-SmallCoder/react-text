@@ -11,6 +11,10 @@ import logo from '../../../static/img/logo.png'
 const { SubMenu } = Menu;
 
 class Left extends Component {
+    componentDidMount() {
+        this.props.saveTitle(menulist[0].title) // 默认登入后第一个页面的展示的当前页面值
+    }
+
     createMenu = (target) => {
         return target.map((item) => {
             if (!item.children) {
@@ -33,6 +37,7 @@ class Left extends Component {
     }
 
     render() {
+        let {pathname} = this.props.location
         return (
             <div>
                 <header className="left-nav-header">
@@ -40,8 +45,8 @@ class Left extends Component {
                     <h1>后台系统</h1>
                 </header>
                 <Menu
-                defaultSelectedKeys={this.props.location.pathname.split('/').reverse()[0]} // 拿到location 里面的pathname
-                defaultOpenKeys={this.props.location.pathname.split('/').splice(2)} // 拿到pathname 路径后两位
+                defaultSelectedKeys={pathname.indexOf('product') !== -1?'product':pathname.split('/').reverse()[0]} // 拿到location 里面的pathname // 解决product 子菜单点击后左导航少了title
+                defaultOpenKeys={pathname.split('/').splice(2)} // 拿到pathname 路径后两位
                 mode="inline"
                 theme="dark"
                 >
