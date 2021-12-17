@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{Component} from 'react'   
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {createSaveUser} from '../../redux/actions/login-action-creator'
@@ -120,8 +120,9 @@ export default connect(
     // connect return dispatch() 将action 返回 
     // 满足dispathc(type,data)
     state => ({
+        //  这里的loginData 是reducer 里面的index 所定义
         isLogin: state.loginData.isLogin
     }),{
-        saveUser: createSaveUser // 存放的是props
+        saveUser: createSaveUser // 存放的是props 将这里的值放入redux 中，其他组件通过state 来获取
     }
 )(Login)

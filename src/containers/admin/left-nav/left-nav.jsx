@@ -12,7 +12,7 @@ const { SubMenu } = Menu;
 
 class Left extends Component {
     componentDidMount() {
-        this.props.saveTitle(menulist[0].title) // 默认登入后第一个页面的展示的当前页面值
+        // this.props.saveTitle(menulist[0].title) // 默认登入后第一个页面的展示的当前页面值
     }
 
     createMenu = (target) => {

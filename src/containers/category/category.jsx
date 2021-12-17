@@ -1,10 +1,12 @@
 import React,{Component} from 'react'
 import { reqCategoryList ,reqAddCategory,reqUpdateCategory } from '../../api';
+import {connect} from 'react-redux'
+import { createSaveCateList } from '../../redux/actions/category-action-creator';
 import {Table,Card,Button, message,Modal,Form,Input} from 'antd' 
 import {PlusCircleOutlined} from '@ant-design/icons';
 import {PAGESIZE} from '../../config'
 
-export default class Category extends Component {
+class Category extends Component {
     state = {
         categoryList: [],
         visible: false,
@@ -24,6 +26,7 @@ export default class Category extends Component {
         const {status,msg,data} = result
         if (status === 0) {
             this.setState({categoryList: data.reverse()})
+            this.props.categoryList(data)
         } else message.error(msg,1)
     }
     
@@ -40,6 +43,7 @@ export default class Category extends Component {
         const {_id,name} = item
         console.log(name)
         this.setState({
+          // bug this.state 异步，this.setState 生效但是this.state 不会
             currentValue: name,
             currentId: _id,
             operType: 'update',
@@ -162,3 +166,12 @@ export default class Category extends Component {
     }
 }
 
+export default connect(
+  state => ({
+    // 获取redux 里的state 的值
+    
+  }),{
+    // 看作添加到redux 里的state 去的方法 
+    categoryList: createSaveCateList
+  }
+)(Category)
