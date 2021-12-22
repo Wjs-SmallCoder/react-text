@@ -117,7 +117,7 @@ class Product extends Component {
                 align: 'center',
                 width: '6%',
                 render: (item) => {return <div><Button type="link" onClick={() => {this.props.history.push(`/admin/prod_about/product/detail/${item._id}`)}}>详情</Button><br/>
-                <Button type="link" onClick={() => {this.props.history.push('/admin/prod_about/product/add_update')}}>修改</Button></div>}
+                <Button type="link" onClick={() => {this.props.history.push(`/admin/prod_about/product/add_update/${item._id}`)}}>修改</Button></div>}
             }
           ];
         return (

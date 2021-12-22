@@ -44,3 +44,21 @@ export const reqSearchProduct = (pageNum,pageSize,searchType,keyword) => myAxios
 
 // 通过id 获取商品数据
 export const reqSearchByIdProduct = (productId) => myAxios.get(`${BASE_URL}/manage/product/info`,{params:{productId}})
+
+// 通过图片名称删除图片
+export const reqRemovePic = (name) => myAxios.post(`${BASE_URL}/manage/img/deelte`,{name})
+
+// 添加商品
+export const reqAddProduct = (productObj) => myAxios.post(`${BASE_URL}/manage/product/add`,{...productObj})
+
+// 通过id 修改商品
+export const reqUpdateProduct = (productObj) => myAxios.post(`${BASE_URL}/manage/product/update`,{...productObj})
+
+// 获取角色(role)
+export const reqRoleList = () => myAxios.get(`${BASE_URL}/manage/role/list`)
+
+// 添加角色(role)
+export const reqAddRole = (roleName) => myAxios.post(`${BASE_URL}/manage/role/add`,{roleName})
+
+// 更新角色权限
+export const reqAuthRole = (roleObj) => myAxios.post(`${BASE_URL}/manage/role/update`,{...roleObj,auth_time:Date.now()})

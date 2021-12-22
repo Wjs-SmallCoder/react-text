@@ -8,7 +8,7 @@ import { message } from 'antd'
 
 // 生成一个axios 实例
 const instance = axios.create({
-    timeout: 4000
+    timeout: 10000
 })
 
 // 使用拦截器(请求)

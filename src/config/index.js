@@ -6,6 +6,8 @@ export const MYPRIKEY = 'aef0gGioIqujdC0vWTYUQw2WCBts8neY' // 获取天气的密
 
 export const PAGESIZE = '5' // 控制每页展示条数
 
+export const ROLE_PAGESIZE = '8' // 角色界面每页展示数
+
 // 当前是否是开发环境
 // export const IS_DEV = process.env.NODE_ENV==='development'
 

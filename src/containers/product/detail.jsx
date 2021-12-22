@@ -35,7 +35,7 @@ class Detail extends Component {
             
             if (result) {
                 this.categoryId = result.categoryId // 在this.setState 之前将id 添加到this（解决1）
-                // this.state 是异步，this.setSatte 能够将值添加到state，但是this.state 不会更新
+                // this.setState 是异步，this.setSatte 能够将值添加到state，但是this.state 不会更新
                 this.setState({...result})
             }
         } else {
